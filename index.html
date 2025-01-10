@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title data-i18n="pageTitle">Firefox Eklenti Manifest Oluşturucu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <button class="theme-switcher" id="themeSwitcher" data-i18n-title="themeSwitch" title="Tema Değiştir">
+        <svg id="lightIcon" class="hidden" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0c-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0c-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0c.39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41c-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+        </svg>
+        <svg id="darkIcon" class="hidden" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9s9-4.03 9-9c0-.46-.04-.92-.1-1.36c-.98 1.37-2.58 2.26-4.4 2.26c-2.98 0-5.4-2.42-5.4-5.4c0-1.81.89-3.42 2.26-4.4c-.44-.06-.9-.1-1.36-.1z"/>
+        </svg>
+    </button>
+    <div class="container">
+        <div class="form-section">
+            <div class="header-with-actions">
+                <div class="header-left">
+                    <h2 data-i18n="title">Manifest Özellikleri</h2>
+                    <div class="language-switcher">
+                        <button class="lang-btn" data-lang="tr">TR</button>
+                        <button class="lang-btn" data-lang="en">EN</button>
+                    </div>
+                </div>
+                <button id="resetForm" class="icon-button" data-i18n-title="resetForm" title="Formu Sıfırla">
+                    <svg viewBox="0 0 24 24" width="18" height="18">
+                        <path fill="currentColor" d="M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6 0 2.97-2.17 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93 0-4.42-3.58-8-8-8zm-6 8c0-1.65.67-3.15 1.76-4.24L6.34 7.34C4.9 8.79 4 10.79 4 13c0 4.08 3.05 7.44 7 7.93v-2.02c-2.83-.48-5-2.94-5-5.91z"/>
+                    </svg>
+                </button>
+            </div>
+            <form id="manifestForm">
+                <!-- Ana Bölüm -->
+                <div class="section-title" data-i18n="basicInfo">Temel Bilgiler</div>
+                <div class="form-group required">
+                    <label for="name" data-i18n="extensionName">Eklenti Adı:
+                        <div class="tooltip-icon" data-tooltip-key="extensionNameTooltip" data-tooltip="Eklentinizin tam adı. Firefox'ta görüntülenecek isim.">?</div>
+                    </label>
+                    <input type="text" id="name" required data-i18n-placeholder="namePlaceholder">
+                </div>
+
+                <div class="form-group">
+                    <label for="shortName" data-i18n="extensionTitle">Eklenti Başlığı:
+                        <div class="tooltip-icon" data-tooltip-key="extensionTitleTooltip">?</div>
+                    </label>
+                    <input type="text" id="shortName" data-i18n-placeholder="shortNamePlaceholder">
+                </div>
+
+                <div class="form-group required">
+                    <label for="description" data-i18n="description">Description:
+                        <div class="tooltip-icon" data-tooltip-key="descriptionTooltip">?</div>
+                    </label>
+                    <textarea id="description" required data-i18n-placeholder="descriptionPlaceholder"></textarea>
+                </div>
+
+                <div class="form-group required">
+                    <label for="version" data-i18n="version">Version:
+                        <div class="tooltip-icon" data-tooltip-key="versionTooltip">?</div>
+                    </label>
+                    <input type="text" id="version" required pattern="\d+\.\d+(\.\d+)?" data-i18n-placeholder="versionPlaceholder">
+                </div>
+
+                <div class="form-group required">
+                    <label for="manifestVersion" data-i18n="manifestVersion">Manifest Versiyonu:
+                        <div class="tooltip-icon" data-tooltip-key="manifestVersionTooltip">?</div>
+                    </label>
+                    <select id="manifestVersion" required>
+                        <option value="2" data-i18n="manifestV2">Manifest V2</option>
+                        <option value="3" data-i18n="manifestV3">Manifest V3</option>
+                    </select>
+                </div>
+
+                <!-- İkonlar Bölümü -->
+                <div class="section-title" data-i18n="icons">İkonlar
+                    <div class="tooltip-icon" data-tooltip-key="iconsTooltip">?</div>
+                </div>
+                <div class="form-group">
+                    <div class="icon-container">
+                        <div class="icon-upload">
+                            <input type="file" id="iconUpload" accept="image/*" class="hidden">
+                            <button type="button" id="uploadButton" class="secondary" data-i18n="uploadIcon">
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                </svg>
+                                İkon Yükle
+                            </button>
+                            <div id="iconPreview" class="icon-preview hidden">
+                                <div class="preview-header">
+                                    <img src="" alt="" data-i18n="iconPreviewAlt">
+                                    <button type="button" id="removeIcon" class="remove-icon" data-i18n-title="removeIconTitle">×</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="icon-checkboxes">
+                            <label class="icon-item">
+                                <input type="checkbox" id="icon16">
+                                <span>16x16</span>
+                                <input type="text" class="icon-path" placeholder="icons/icon-16.png">
+                                <img class="icon-preview-small" data-size="16" src="" alt="">
+                                <button type="button" class="download-icon" data-size="16" data-i18n="download">İndir</button>
+                            </label>
+                            <label class="icon-item">
+                                <input type="checkbox" id="icon48" checked>
+                                <span>48x48</span>
+                                <input type="text" class="icon-path" placeholder="icons/icon-48.png">
+                                <img class="icon-preview-small" data-size="48" src="" alt="">
+                                <button type="button" class="download-icon" data-size="48" data-i18n="download">İndir</button>
+                            </label>
+                            <label class="icon-item">
+                                <input type="checkbox" id="icon96">
+                                <span>96x96</span>
+                                <input type="text" class="icon-path" placeholder="icons/icon-96.png">
+                                <img class="icon-preview-small" data-size="96" src="" alt="">
+                                <button type="button" class="download-icon" data-size="96" data-i18n="download">İndir</button>
+                            </label>
+                            <label class="icon-item">
+                                <input type="checkbox" id="icon128">
+                                <span>128x128</span>
+                                <input type="text" class="icon-path" placeholder="icons/icon-128.png">
+                                <img class="icon-preview-small" data-size="128" src="" alt="">
+                                <button type="button" class="download-icon" data-size="128" data-i18n="download">İndir</button>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- İzinler Bölümü -->
+                <div class="section-title" data-i18n="permissions">İzinler</div>
+                <div class="form-group">
+                    <label data-i18n="basicPermissions">Temel İzinler:
+                        <div class="tooltip-icon" data-tooltip-key="basicPermissionsTooltip">?</div>
+                    </label>
+                    <div class="checkbox-group">
+                        <label class="permission-label">
+                            <input type="checkbox" value="activeTab">
+                            <span>activeTab</span>
+                            <div class="tooltip-icon" data-tooltip-key="activeTabTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="tabs">
+                            <span>tabs</span>
+                            <div class="tooltip-icon" data-tooltip-key="tabsTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="storage">
+                            <span>storage</span>
+                            <div class="tooltip-icon" data-tooltip-key="storageTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="cookies">
+                            <span>cookies</span>
+                            <div class="tooltip-icon" data-tooltip-key="cookiesTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="webRequest">
+                            <span>webRequest</span>
+                            <div class="tooltip-icon" data-tooltip-key="webRequestTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="webRequestBlocking">
+                            <span>webRequestBlocking</span>
+                            <div class="tooltip-icon" data-tooltip-key="webRequestBlockingTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="contextMenus">
+                            <span>contextMenus</span>
+                            <div class="tooltip-icon" data-tooltip-key="contextMenusTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="downloads.open">
+                            <span>downloads.open</span>
+                            <div class="tooltip-icon" data-tooltip-key="downloadsOpenTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="identity">
+                            <span>identity</span>
+                            <div class="tooltip-icon" data-tooltip-key="identityTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="nativeMessaging">
+                            <span>nativeMessaging</span>
+                            <div class="tooltip-icon" data-tooltip-key="nativeMessagingTooltip">?</div>
+                        </label>
+                        <label class="permission-label">
+                            <input type="checkbox" value="privacy">
+                            <span>privacy</span>
+                            <div class="tooltip-icon" data-tooltip-key="privacyTooltip">?</div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="hostPermissions">Host İzinleri:
+                        <div class="tooltip-icon" data-tooltip-key="hostPermissionsTooltip">?</div>
+                    </label>
+                    <div class="checkbox-group">
+                        <label data-i18n="allUrls"><input type="checkbox" value="*://*/*"> Tüm URL'ler (*://*/*)</label>
+                        <label data-i18n="customHost"><input type="checkbox" id="customHost"> Özel Host İzni</label>
+                        <input type="text" id="customHostPattern" placeholder="örn: *://*.example.com/*" disabled>
+                    </div>
+                </div>
+
+                <!-- Eklenti Ayarları -->
+                <div class="section-title" data-i18n="extensionSettings">Eklenti Ayarları</div>
+                <div class="form-group">
+                    <label data-i18n="browserAction">Browser Action:
+                        <div class="tooltip-icon" data-tooltip-key="browserActionTooltip">?</div>
+                    </label>
+                    <div class="sub-form">
+                        <label class="switch">
+                            <input type="checkbox" id="hasBrowserAction" checked>
+                            <span class="slider"></span>
+                        </label>
+                        <div class="browser-action-settings">
+                            <input type="text" id="defaultPopup" data-i18n-placeholder="popupPlaceholder" placeholder="popup/popup.html">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="backgroundScripts">Background Scripts:
+                        <div class="tooltip-icon" data-tooltip-key="backgroundScriptsTooltip">?</div>
+                    </label>
+                    <div class="sub-form">
+                        <label class="switch">
+                            <input type="checkbox" id="hasBackground">
+                            <span class="slider"></span>
+                        </label>
+                        <div class="background-settings">
+                            <div class="script-container">
+                                <input type="text" class="script-input" data-i18n-placeholder="scriptPlaceholder" placeholder="background.js" disabled>
+                            </div>
+                            <button type="button" id="addScript" disabled data-i18n="addScriptBtn">+ Script Ekle</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label data-i18n="shortcuts">Kısayol Tuşları:
+                        <div class="tooltip-icon" data-tooltip-key="shortcutsTooltip">?</div>
+                    </label>
+                    <div class="sub-form">
+                        <label class="switch">
+                            <input type="checkbox" id="hasCommands">
+                            <span class="slider"></span>
+                        </label>
+                        <div class="commands-settings">
+                            <input type="text" id="commandShortcut" data-i18n-placeholder="shortcutPlaceholder" placeholder="Ctrl+Shift+Y" disabled>
+                            <input type="text" id="commandDescription" data-i18n-placeholder="shortcutDescriptionPlaceholder" placeholder="Kısayol açıklaması" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gelişmiş Özellikler -->
+                <div class="section-title" data-i18n="advancedFeatures">Gelişmiş Özellikler</div>
+                <div class="advanced-features">
+                    <!-- Web Erişilebilir Kaynaklar -->
+                    <div class="form-group">
+                        <label data-i18n="webAccessibleResources">Web Erişilebilir Kaynaklar:
+                            <div class="tooltip-icon" data-tooltip-key="webAccessibleTooltip">?</div>
+                        </label>
+                        <div class="sub-form">
+                            <label class="switch">
+                                <input type="checkbox" id="hasWebAccessible">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="web-accessible-settings">
+                                <div class="resource-container">
+                                    <input type="text" class="resource-input" data-i18n-placeholder="resourcePlaceholder" placeholder="images/logo.png" disabled>
+                                </div>
+                                <button type="button" id="addResource" disabled data-i18n="addResource">+ Kaynak Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content Scripts -->
+                    <div class="form-group">
+                        <label data-i18n="contentScripts">Content Scripts:
+                            <div class="tooltip-icon" data-tooltip-key="contentScriptsTooltip">?</div>
+                        </label>
+                        <div class="sub-form">
+                            <label class="switch">
+                                <input type="checkbox" id="hasContentScripts">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="content-scripts-settings">
+                                <div class="content-script-container">
+                                    <input type="text" class="script-path" placeholder="content/script.js" disabled>
+                                    <input type="text" class="script-matches" data-i18n-placeholder="matchesPlaceholder" placeholder="*://*.example.com/*" disabled>
+                                </div>
+                                <button type="button" id="addContentScript" disabled data-i18n="addScript">+ Script Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- İsteğe Bağlı İzinler -->
+                    <div class="form-group">
+                        <label data-i18n="optionalPermissions">İsteğe Bağlı İzinler:
+                            <div class="tooltip-icon" data-tooltip-key="optionalPermissionsTooltip">?</div>
+                        </label>
+                        <div class="checkbox-group">
+                            <label class="permission-label">
+                                <input type="checkbox" value="bookmarks">
+                                <span>bookmarks</span>
+                                <div class="tooltip-icon" data-tooltip-key="bookmarksTooltip">?</div>
+                            </label>
+                            <label class="permission-label">
+                                <input type="checkbox" value="clipboardRead">
+                                <span>clipboardRead</span>
+                                <div class="tooltip-icon" data-tooltip-key="clipboardReadTooltip">?</div>
+                            </label>
+                            <label class="permission-label">
+                                <input type="checkbox" value="clipboardWrite">
+                                <span>clipboardWrite</span>
+                                <div class="tooltip-icon" data-tooltip-key="clipboardWriteTooltip">?</div>
+                            </label>
+                            <label class="permission-label">
+                                <input type="checkbox" value="downloads">
+                                <span>downloads</span>
+                                <div class="tooltip-icon" data-tooltip-key="downloadsTooltip">?</div>
+                            </label>
+                            <label class="permission-label">
+                                <input type="checkbox" value="history">
+                                <span>history</span>
+                                <div class="tooltip-icon" data-tooltip-key="historyTooltip">?</div>
+                            </label>
+                            <label class="permission-label">
+                                <input type="checkbox" value="notifications">
+                                <span>notifications</span>
+                                <div class="tooltip-icon" data-tooltip-key="notificationsTooltip">?</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Update URL -->
+                    <div class="form-group">
+                        <label data-i18n="updateUrl">Update URL:
+                            <div class="tooltip-icon" data-tooltip-key="updateUrlTooltip">?</div>
+                        </label>
+                        <input type="text" id="updateUrl" data-i18n-placeholder="updateUrlPlaceholder">
+                    </div>
+
+                    <!-- Homepage URL -->
+                    <div class="form-group">
+                        <label data-i18n="homepageUrl">Homepage URL:
+                            <div class="tooltip-icon" data-tooltip-key="homepageUrlTooltip">?</div>
+                        </label>
+                        <input type="text" id="homepageUrl" data-i18n-placeholder="homepageUrlPlaceholder">
+                    </div>
+
+                    <!-- Author -->
+                    <div class="form-group">
+                        <label data-i18n="author">Author:
+                            <div class="tooltip-icon" data-tooltip-key="authorTooltip">?</div>
+                        </label>
+                        <input type="text" id="author" data-i18n-placeholder="authorPlaceholder">
+                    </div>
+
+                    <!-- Developer Information -->
+                    <div class="form-group">
+                        <label data-i18n="developerInfo">Geliştirici Bilgileri:
+                            <div class="tooltip-icon" data-tooltip-key="developerInfoTooltip">?</div>
+                        </label>
+                        <div class="sub-form developer-info">
+                            <input type="text" id="developerName" data-i18n-placeholder="developerNamePlaceholder" placeholder="Geliştirici Adı">
+                            <input type="text" id="developerUrl" data-i18n-placeholder="developerUrlPlaceholder" placeholder="Geliştirici URL">
+                        </div>
+                    </div>
+
+                    <!-- Arka Plan Rengi -->
+                    <div class="form-group">
+                        <label data-i18n="backgroundColor">Arka Plan Rengi:
+                            <div class="tooltip-icon" data-tooltip-key="backgroundColorTooltip">?</div>
+                        </label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="backgroundColor" value="#FF0000">
+                            <input type="text" class="color-value" value="#FF0000" data-color-input="backgroundColor">
+                        </div>
+                    </div>
+
+                    <!-- Tema Rengi -->
+                    <div class="form-group">
+                        <label data-i18n="themeColor">Tema Rengi:
+                            <div class="tooltip-icon" data-tooltip-key="themeColorTooltip">?</div>
+                        </label>
+                        <div class="color-picker-wrapper">
+                            <input type="color" id="themeColor" value="#4F46E5">
+                            <input type="text" class="color-value" value="#4F46E5" data-color-input="themeColor">
+                        </div>
+                    </div>
+
+                    <!-- Minimum Firefox Versiyonu -->
+                    <div class="form-group">
+                        <label data-i18n="minFirefoxVersion">Minimum Firefox Versiyonu:
+                            <div class="tooltip-icon" data-tooltip-key="minFirefoxVersionTooltip">?</div>
+                        </label>
+                        <input type="text" id="minVersion" data-i18n-placeholder="minVersionPlaceholder">
+                    </div>
+
+                    <!-- Maksimum Firefox Versiyonu -->
+                    <div class="form-group">
+                        <label data-i18n="maxFirefoxVersion">Maksimum Firefox Versiyonu:
+                            <div class="tooltip-icon" data-tooltip-key="maxFirefoxVersionTooltip">?</div>
+                        </label>
+                        <input type="text" id="maxVersion" data-i18n-placeholder="maxVersionPlaceholder">
+                    </div>
+
+                    <!-- Çeviri Dosyaları -->
+                    <div class="form-group">
+                        <label data-i18n="translationFiles">Çeviri Dosyaları:
+                            <div class="tooltip-icon" data-tooltip-key="translationFilesTooltip">?</div>
+                        </label>
+                        <input type="text" id="defaultLocale" data-i18n-placeholder="defaultLocalePlaceholder">
+                    </div>
+
+                    <!-- Protokol İşleyicileri -->
+                    <div class="form-group">
+                        <label data-i18n="protocolHandlers">Protokol İşleyicileri:
+                            <div class="tooltip-icon" data-tooltip-key="protocolHandlersTooltip">?</div>
+                        </label>
+                        <div class="sub-form">
+                            <label class="switch">
+                                <input type="checkbox" id="hasProtocolHandlers">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="protocol-handlers-settings">
+                                <input type="text" id="protocolName" data-i18n-placeholder="protocolNamePlaceholder" placeholder="magnet" disabled>
+                                <input type="text" id="protocolTemplate" data-i18n-placeholder="protocolTemplatePlaceholder" placeholder="https://example.com/handler?url=%s" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chrome Ayarları -->
+                    <div class="form-group">
+                        <label data-i18n="chromeSettings">Chrome Ayarları:
+                            <div class="tooltip-icon" data-tooltip-key="chromeSettingsTooltip">?</div>
+                        </label>
+                        <div class="sub-form">
+                            <label class="switch">
+                                <input type="checkbox" id="hasChromeSettings">
+                                <span class="slider"></span>
+                            </label>
+                            <div class="chrome-settings">
+                                <input type="text" id="chromeHomepage" data-i18n-placeholder="chromeHomepagePlaceholder" placeholder="https://example.com" disabled>
+                                <input type="text" id="searchProviderName" data-i18n-placeholder="searchProviderNamePlaceholder" placeholder="Custom Search" disabled>
+                                <input type="text" id="searchUrl" data-i18n-placeholder="searchUrlPlaceholder" placeholder="https://example.com/search?q={searchTerms}" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="preview-section">
+            <div class="preview-header">
+                <h2 data-i18n="preview">Önizleme</h2>
+                <div class="preview-actions">
+                    <button id="formatBtn" class="icon-button" data-i18n-title="compressFormat" title="Formatı Sıkıştır">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor" d="M4 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm0 2v16h16V4H4zm2 3h12v2H6V7zm0 4h12v2H6v-2zm0 4h8v2H6v-2z"/>
+                        </svg>
+                    </button>
+                    <button id="copyPreviewBtn" class="icon-button" data-i18n-title="copy" title="Kopyala">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                        </svg>
+                    </button>
+                    <button id="downloadPreviewBtn" class="icon-button" data-i18n-title="download" title="İndir">
+                        <svg viewBox="0 0 24 24" width="18" height="18">
+                            <path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <pre id="manifestPreview"></pre>
+            <div class="preview-buttons">
+                <button id="copyBtn" class="primary" data-i18n="copy">Kopyala</button>
+                <button id="downloadBtn" class="secondary" data-i18n="downloadManifest">manifest.json</button>
+                <button id="downloadZipBtn" class="secondary" data-i18n="downloadZip">Zip Olarak İndir</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
