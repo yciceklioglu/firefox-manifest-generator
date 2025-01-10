@@ -1,6 +1,6 @@
 # Firefox Manifest Generator
 
-![Firefox Manifest Generator Screenshot]([https://github.com/yciceklioglu/firefox-manifest-generator/raw/main/screenshot.png](https://raw.githubusercontent.com/yciceklioglu/firefox-manifest-generator/refs/heads/main/tr.png))
+![Firefox Manifest Generator Screenshot](https://raw.githubusercontent.com/yciceklioglu/firefox-manifest-generator/main/tr.png)
 
 **Demo:** [Firefox Manifest Generator Demo](https://codepen.io/trwpcom/pen/MYgQMYB)
 
@@ -23,8 +23,7 @@ This tool eliminates common errors and ensures proper format while simplifying t
 
 ---
 
-![Firefox Manifest Generator Screenshot]([https://github.com/yciceklioglu/firefox-manifest-generator/raw/main/screenshot.png](https://raw.githubusercontent.com/yciceklioglu/firefox-manifest-generator/refs/heads/main/en.png))
-
+![Firefox Manifest Generator Screenshot](https://raw.githubusercontent.com/yciceklioglu/firefox-manifest-generator/main/en.png)
 
 ### Firefox Eklenti Manifest Oluşturucu
 
